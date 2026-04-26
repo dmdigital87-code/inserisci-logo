@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Metti il Logo sulla Foto</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blu: #1a56a0;
+    --blu-chiaro: #e8f0fb;
+    --verde: #1a8c4e;
+    --verde-chiaro: #e6f4ed;
+    --arancio: #e07b00;
+    --arancio-chiaro: #fff3e0;
+    --grigio: #f5f5f5;
+    --testo: #1a1a2e;
+  }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #f0f4ff;
+    min-height: 100vh;
+    color: var(--testo);
+    padding: 16px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: var(--blu);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .sottotitolo {
+    text-align: center;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 24px;
+  }
+
+  /* STEP CARD */
+  .step {
+    background: white;
+    border-radius: 20px;
+    padding: 22px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: opacity 0.3s;
+  }
+
+  .step.disabilitato {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .step-numero {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  .step:nth-child(1) .step-numero { background: var(--arancio-chiaro); color: var(--arancio); }
+  .step:nth-child(2) .step-numero { background: var(--blu-chiaro); color: var(--blu); }
+  .step:nth-child(3) .step-numero { background: var(--verde-chiaro); color: var(--verde); }
+
+  .step-titolo {
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .step-desc {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+
+  /* PULSANTI */
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.1s, box-shadow 0.1s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn:active { transform: scale(0.97); }
+
+  .btn-arancio { background: var(--arancio); color: white; }
+  .btn-blu { background: var(--blu); color: white; }
+  .btn-verde { background: var(--verde); color: white; }
+
+  .btn-piccolo {
+    display: inline-block;
+    width: auto;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    margin-top: 8px;
+    background: #eee;
+    color: #555;
+    border-radius: 10px;
+  }
+
+  input[type="file"] { display: none; }
+
+  /* PREVIEW LOGO */
+  .logo-preview-box {
+    display: none;
+    align-items: center;
+    gap: 12px;
+    background: var(--arancio-chiaro);
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 10px;
+  }
+
+  .logo-preview-box img {
+    height: 50px;
+    max-width: 100px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: white;
+    padding: 4px;
+  }
+
+  .logo-ok-testo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--arancio);
+  }
+
+  .logo-ok-sotto {
+    font-size: 0.85rem;
+    color: #777;
+  }
+
+  /* OPZIONI LOGO */
+  .opzioni {
+    margin-top: 14px;
+    display: none;
+  }
+
+  .opzioni label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #444;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .radio-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .radio-btn {
+    padding: 10px 6px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+    color: #555;
+  }
+
+  .radio-btn.selezionato {
+    border-color: var(--blu);
+    background: var(--blu-chiaro);
+    color: var(--blu);
+  }
+
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .slider-row input[type="range"] {
+    flex: 1;
+    height: 6px;
+    accent-color: var(--blu);
+  }
+
+  .slider-val {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--blu);
+    min-width: 32px;
+  }
+
+  /* ANTEPRIMA FOTO */
+  .anteprima-box {
+    display: none;
+    margin-top: 12px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #000;
+    text-align: center;
+  }
+
+  .anteprima-box canvas {
+    max-width: 100%;
+    max-height: 320px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* STEP 3 */
+  #step3 { text-align: center; }
+
+  .grande-check {
+    font-size: 3.5rem;
+    margin-bottom: 8px;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-top: 20px;
+    padding-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+
+<h1>📸 Logo sulla Foto</h1>
+<p class="sottotitolo">Metti il tuo logo su ogni foto in 3 passi</p>
+
+<!-- STEP 1: LOGO -->
+<div class="step" id="step1">
+  <div class="step-header">
+    <div class="step-numero">1</div>
+    <div class="step-titolo">Il tuo logo</div>
+  </div>
+  <p class="step-desc" id="desc1">Carica il logo una sola volta.<br>Verrà ricordato per sempre.</p>
+
+  <div class="logo-preview-box" id="logoPreviewBox">
+    <img id="logoPreviewImg" src="" alt="Logo">
+    <div>
+      <div class="logo-ok-testo">✅ Logo caricato!</div>
+      <div class="logo-ok-sotto">Pronto per le tue foto</div>
+    </div>
+  </div>
+
+  <button class="btn btn-arancio" id="btnCaricaLogo" onclick="document.getElementById('inputLogo').click()" style="margin-top:10px">
+    🖼️ Carica il Logo
+  </button>
+  <input type="file" id="inputLogo" accept="image/*">
+
+  <button class="btn btn-piccolo" id="btnCambia" style="display:none" onclick="document.getElementById('inputLogo').click()">
+    Cambia logo
+  </button>
+
+  <!-- Opzioni -->
+  <div class="opzioni" id="opzioni">
+    <label>📍 Posizione del logo</label>
+    <div class="radio-group" id="posizioneGroup">
+      <div class="radio-btn" data-val="bottom-right" onclick="selezionaPosizione(this)">Basso destra</div>
+      <div class="radio-btn selezionato" data-val="bottom-left" onclick="selezionaPosizione(this)">Basso sinistra</div>
+      <div class="radio-btn" data-val="top-right" onclick="selezionaPosizione(this)">Alto destra</div>
+      <div class="radio-btn" data-val="top-left" onclick="selezionaPosizione(this)">Alto sinistra</div>
+    </div>
+
+    <label>📏 Dimensione del logo</label>
+    <div class="slider-row">
+      <span>🔍</span>
+      <input type="range" id="sliderDim" min="5" max="40" value="18" oninput="aggiornaSlider()">
+      <span class="slider-val" id="valDim">18%</span>
+    </div>
+
+    <label style="margin-top:10px">👻 Trasparenza</label>
+    <div class="slider-row">
+      <span>◻️</span>
+      <input type="range" id="sliderAlpha" min="20" max="100" value="85" oninput="aggiornaSlider()">
+      <span class="slider-val" id="valAlpha">85%</span>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2: FOTO -->
+<div class="step disabilitato" id="step2">
+  <div class="step-header">
+    <div class="step-numero">2</div>
+    <div class="step-titolo">Scegli la foto</div>
+  </div>
+  <p class="step-desc">Scegli una foto dalla galleria del telefono.</p>
+
+  <button class="btn btn-blu" onclick="document.getElementById('inputFoto').click()">
+    🌅 Scegli Foto
+  </button>
+  <input type="file" id="inputFoto" accept="image/*">
+
+  <div class="anteprima-box" id="anteprimaBox">
+    <canvas id="canvasAnteprima"></canvas>
+  </div>
+</div>
+
+<!-- STEP 3: SCARICA -->
+<div class="step disabilitato" id="step3">
+  <div class="step-header">
+    <div class="step-numero">3</div>
+    <div class="step-titolo">Scarica la foto</div>
+  </div>
+  <p class="step-desc">La foto è pronta con il tuo logo!</p>
+
+  <button class="btn btn-verde" id="btnScarica" onclick="scaricaFoto()">
+    💾 Scarica Foto
+  </button>
+</div>
+
+<p class="footer">Le foto restano sul tuo telefono, niente viene inviato su internet.</p>
+
+<!-- CANVAS FINALE (nascosto) -->
+<canvas id="canvasFinale" style="display:none"></canvas>
+
+<script>
+  let logoDataUrl = null;
+  let fotoDataUrl = null;
+  let posizione = 'bottom-left';
+  let fotoOriginale = null; // Image object
+
+  // Carica logo salvato
+  window.onload = function() {
+    const saved = localStorage.getItem('logo_utente');
+    if (saved) {
+      logoDataUrl = saved;
+      mostraLogoPreview(saved);
+      abilitaStep2();
+    }
+  };
+
+  // INPUT LOGO
+  document.getElementById('inputLogo').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      logoDataUrl = ev.target.result;
+      localStorage.setItem('logo_utente', logoDataUrl);
+      mostraLogoPreview(logoDataUrl);
+      abilitaStep2();
+      if (fotoDataUrl) disegnaAnteprima();
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // INPUT FOTO
+  document.getElementById('inputFoto').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      fotoDataUrl = ev.target.result;
+      disegnaAnteprima();
+    };
+    reader.readAsDataURL(file);
+  });
+
+  function mostraLogoPreview(src) {
+    document.getElementById('logoPreviewBox').style.display = 'flex';
+    document.getElementById('logoPreviewImg').src = src;
+    document.getElementById('btnCaricaLogo').textContent = '🔄 Sostituisci Logo';
+    document.getElementById('btnCambia').style.display = 'none';
+    document.getElementById('opzioni').style.display = 'block';
+    document.getElementById('desc1').innerHTML = 'Il logo è stato salvato!<br>Puoi cambiarlo quando vuoi.';
+  }
+
+  function abilitaStep2() {
+    document.getElementById('step2').classList.remove('disabilitato');
+  }
+
+  function abilitaStep3() {
+    document.getElementById('step3').classList.remove('disabilitato');
+  }
+
+  function selezionaPosizione(el) {
+    document.querySelectorAll('#posizioneGroup .radio-btn').forEach(b => b.classList.remove('selezionato'));
+    el.classList.add('selezionato');
+    posizione = el.dataset.val;
+    if (fotoDataUrl) disegnaAnteprima();
+  }
+
+  function aggiornaSlider() {
+    document.getElementById('valDim').textContent = document.getElementById('sliderDim').value + '%';
+    document.getElementById('valAlpha').textContent = document.getElementById('sliderAlpha').value + '%';
+    if (fotoDataUrl) disegnaAnteprima();
+  }
+
+  function disegnaAnteprima() {
+    const foto = new Image();
+    foto.onload = function() {
+      fotoOriginale = foto;
+      const canvasA = document.getElementById('canvasAnteprima');
+      const canvasF = document.getElementById('canvasFinale');
+
+      // Dimensioni reali
+      canvasF.width = foto.width;
+      canvasF.height = foto.height;
+      const ctxF = canvasF.getContext('2d');
+      ctxF.drawImage(foto, 0, 0);
+
+      if (logoDataUrl) {
+        const logo = new Image();
+        logo.onload = function() {
+          applicaLogo(ctxF, logo, foto.width, foto.height);
+
+          // Anteprima ridotta
+          const maxW = 360;
+          const scale = Math.min(maxW / foto.width, 1);
+          canvasA.width = foto.width * scale;
+          canvasA.height = foto.height * scale;
+          const ctxA = canvasA.getContext('2d');
+          ctxA.scale(scale, scale);
+          ctxA.drawImage(foto, 0, 0);
+          applicaLogo(ctxA, logo, foto.width, foto.height);
+
+          document.getElementById('anteprimaBox').style.display = 'block';
+          abilitaStep3();
+        };
+        logo.src = logoDataUrl;
+      }
+    };
+    foto.src = fotoDataUrl;
+  }
+
+  function applicaLogo(ctx, logo, fw, fh) {
+    const dim = parseInt(document.getElementById('sliderDim').value) / 100;
+    const alpha = parseInt(document.getElementById('sliderAlpha').value) / 100;
+    const margine = fw * 0.04;
+
+    // Calcola dimensioni logo mantenendo proporzioni
+    const maxW = fw * dim;
+    const maxH = fh * dim;
+    const ratio = Math.min(maxW / logo.width, maxH / logo.height);
+    const lw = logo.width * ratio;
+    const lh = logo.height * ratio;
+
+    let x, y;
+    switch (posizione) {
+      case 'bottom-right': x = fw - lw - margine; y = fh - lh - margine; break;
+      case 'bottom-left':  x = margine;            y = fh - lh - margine; break;
+      case 'top-right':    x = fw - lw - margine;  y = margine; break;
+      case 'top-left':     x = margine;             y = margine; break;
+    }
+
+    ctx.globalAlpha = alpha;
+    ctx.drawImage(logo, x, y, lw, lh);
+    ctx.globalAlpha = 1;
+  }
+
+  function scaricaFoto() {
+    const canvas = document.getElementById('canvasFinale');
+    const link = document.createElement('a');
+    link.download = 'foto-con-logo.jpg';
+    link.href = canvas.toDataURL('image/jpeg', 0.95);
+    link.click();
+
+    // Feedback visivo
+    const btn = document.getElementById('btnScarica');
+    btn.textContent = '✅ Scaricata!';
+    btn.style.background = '#0a6638';
+    setTimeout(() => {
+      btn.textContent = '💾 Scarica Foto';
+      btn.style.background = '';
+    }, 2500);
+  }
+</script>
+</body>
+</html>
