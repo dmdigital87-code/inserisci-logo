@@ -16,7 +16,8 @@
     --verde-chiaro: #e6f4ed;
     --arancio: #e07b00;
     --arancio-chiaro: #fff3e0;
-    --grigio: #f5f5f5;
+    --viola: #7c3aed;
+    --viola-chiaro: #f0ebff;
     --testo: #1a1a2e;
   }
 
@@ -34,7 +35,6 @@
     font-weight: 900;
     color: var(--blu);
     margin-bottom: 6px;
-    line-height: 1.2;
   }
 
   .sottotitolo {
@@ -44,7 +44,6 @@
     margin-bottom: 24px;
   }
 
-  /* STEP CARD */
   .step {
     background: white;
     border-radius: 20px;
@@ -53,11 +52,7 @@
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     transition: opacity 0.3s;
   }
-
-  .step.disabilitato {
-    opacity: 0.4;
-    pointer-events: none;
-  }
+  .step.disabilitato { opacity: 0.4; pointer-events: none; }
 
   .step-header {
     display: flex;
@@ -67,202 +62,157 @@
   }
 
   .step-numero {
-    width: 42px;
-    height: 42px;
+    width: 42px; height: 42px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    font-weight: 900;
-    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; font-weight: 900; flex-shrink: 0;
   }
 
-  .step:nth-child(1) .step-numero { background: var(--arancio-chiaro); color: var(--arancio); }
-  .step:nth-child(2) .step-numero { background: var(--blu-chiaro); color: var(--blu); }
-  .step:nth-child(3) .step-numero { background: var(--verde-chiaro); color: var(--verde); }
+  #step1 .step-numero      { background: var(--arancio-chiaro); color: var(--arancio); }
+  #step-testo .step-numero { background: var(--viola-chiaro);   color: var(--viola);   }
+  #step2 .step-numero      { background: var(--blu-chiaro);     color: var(--blu);     }
+  #step3 .step-numero      { background: var(--verde-chiaro);   color: var(--verde);   }
 
-  .step-titolo {
-    font-size: 1.2rem;
-    font-weight: 800;
-    line-height: 1.2;
-  }
+  .step-titolo { font-size: 1.2rem; font-weight: 800; }
+  .step-desc   { font-size: 0.95rem; color: #666; margin-bottom: 14px; line-height: 1.4; }
 
-  .step-desc {
-    font-size: 0.95rem;
-    color: #666;
-    margin-bottom: 14px;
-    line-height: 1.4;
-  }
-
-  /* PULSANTI */
   .btn {
-    display: block;
-    width: 100%;
-    padding: 18px;
-    border: none;
-    border-radius: 14px;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 800;
-    cursor: pointer;
-    text-align: center;
-    transition: transform 0.1s, box-shadow 0.1s;
-    position: relative;
-    overflow: hidden;
+    display: block; width: 100%; padding: 18px;
+    border: none; border-radius: 14px;
+    font-family: 'Nunito', sans-serif; font-size: 1.1rem; font-weight: 800;
+    cursor: pointer; text-align: center; transition: transform 0.1s;
   }
-
   .btn:active { transform: scale(0.97); }
-
   .btn-arancio { background: var(--arancio); color: white; }
-  .btn-blu { background: var(--blu); color: white; }
-  .btn-verde { background: var(--verde); color: white; }
-
-  .btn-piccolo {
-    display: inline-block;
-    width: auto;
-    padding: 10px 18px;
-    font-size: 0.9rem;
-    margin-top: 8px;
-    background: #eee;
-    color: #555;
-    border-radius: 10px;
-  }
+  .btn-blu     { background: var(--blu);     color: white; }
+  .btn-verde   { background: var(--verde);   color: white; }
 
   input[type="file"] { display: none; }
 
-  /* PREVIEW LOGO */
+  /* LOGO PREVIEW */
   .logo-preview-box {
-    display: none;
-    align-items: center;
-    gap: 12px;
-    background: var(--arancio-chiaro);
-    border-radius: 12px;
-    padding: 12px;
-    margin-top: 10px;
+    display: none; align-items: center; gap: 12px;
+    background: var(--arancio-chiaro); border-radius: 12px;
+    padding: 12px; margin-top: 10px;
   }
-
   .logo-preview-box img {
-    height: 50px;
-    max-width: 100px;
-    object-fit: contain;
-    border-radius: 6px;
-    background: white;
-    padding: 4px;
+    height: 50px; max-width: 100px; object-fit: contain;
+    border-radius: 6px; background: white; padding: 4px;
   }
+  .logo-ok-testo { font-size: 1rem; font-weight: 700; color: var(--arancio); }
+  .logo-ok-sotto { font-size: 0.85rem; color: #777; }
 
-  .logo-ok-testo {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--arancio);
-  }
+  /* OPZIONI GENERALI */
+  .opzioni { margin-top: 14px; display: none; }
 
-  .logo-ok-sotto {
-    font-size: 0.85rem;
-    color: #777;
+  .opzioni label, .sezione-testo label {
+    font-size: 0.92rem; font-weight: 800; color: #444;
+    display: block; margin-bottom: 6px; margin-top: 14px;
   }
-
-  /* OPZIONI LOGO */
-  .opzioni {
-    margin-top: 14px;
-    display: none;
-  }
-
-  .opzioni label {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #444;
-    display: block;
-    margin-bottom: 6px;
-  }
+  .opzioni label:first-child { margin-top: 0; }
 
   .radio-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin-bottom: 12px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px; margin-bottom: 4px;
   }
 
   .radio-btn {
-    padding: 10px 6px;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 0.85rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s;
-    background: white;
-    color: #555;
+    padding: 10px 6px; border: 2px solid #ddd; border-radius: 10px;
+    text-align: center; font-size: 0.82rem; font-weight: 700;
+    cursor: pointer; background: white; color: #555;
+    transition: all 0.2s; line-height: 1.3;
   }
-
   .radio-btn.selezionato {
-    border-color: var(--blu);
-    background: var(--blu-chiaro);
-    color: var(--blu);
+    border-color: var(--blu); background: var(--blu-chiaro); color: var(--blu);
   }
 
   .slider-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 4px;
+    display: flex; align-items: center; gap: 10px; margin-bottom: 4px;
+  }
+  .slider-row input[type="range"] { flex: 1; height: 6px; accent-color: var(--blu); }
+  .slider-row input[type="range"].viola { accent-color: var(--viola); }
+  .slider-val { font-size: 0.9rem; font-weight: 700; color: var(--blu); min-width: 36px; text-align: right; }
+  .slider-val.viola { color: var(--viola); }
+
+  /* SEZIONE TESTO */
+  .testo-input {
+    width: 100%; padding: 14px;
+    border: 2px solid #ddd; border-radius: 12px;
+    font-family: 'Nunito', sans-serif; font-size: 1.05rem; font-weight: 700;
+    color: var(--testo); outline: none; transition: border-color 0.2s; resize: none;
+  }
+  .testo-input:focus { border-color: var(--viola); }
+
+  /* GRIGLIA POSIZIONE 3x3 */
+  .pos-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 6px; margin-bottom: 4px;
+  }
+  .pos-cella {
+    aspect-ratio: 1; border: 2px solid #ddd; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 0.7rem; font-weight: 700; color: #888;
+    text-align: center; line-height: 1.3; padding: 4px; background: white;
+    transition: all 0.2s;
+  }
+  .pos-cella.selezionato {
+    border-color: var(--viola); background: var(--viola-chiaro); color: var(--viola);
   }
 
-  .slider-row input[type="range"] {
-    flex: 1;
-    height: 6px;
-    accent-color: var(--blu);
+  /* COLORI */
+  .colori-group { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+  .colore-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 3px solid transparent; cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
   }
+  .colore-btn.selezionato { border-color: var(--viola); transform: scale(1.15); }
 
-  .slider-val {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--blu);
-    min-width: 32px;
+  /* TOGGLE */
+  .toggle-row {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--viola-chiaro); border-radius: 12px;
+    padding: 12px 14px; margin-top: 14px; cursor: pointer;
   }
+  .toggle-label { font-size: 0.95rem; font-weight: 800; color: var(--viola); }
+  .toggle-sub   { font-size: 0.8rem; color: #888; font-weight: 600; }
+  .toggle-switch {
+    width: 50px; height: 28px; background: #ccc;
+    border-radius: 20px; position: relative; transition: background 0.2s; flex-shrink: 0;
+  }
+  .toggle-switch.on { background: var(--viola); }
+  .toggle-switch::after {
+    content: ''; position: absolute; width: 22px; height: 22px;
+    background: white; border-radius: 50%; top: 3px; left: 3px;
+    transition: left 0.2s; box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .toggle-switch.on::after { left: 25px; }
 
-  /* ANTEPRIMA FOTO */
+  /* ANTEPRIMA */
   .anteprima-box {
-    display: none;
-    margin-top: 12px;
-    border-radius: 14px;
-    overflow: hidden;
-    background: #000;
-    text-align: center;
+    display: none; margin-top: 12px; border-radius: 14px;
+    overflow: hidden; background: #000; text-align: center;
   }
-
   .anteprima-box canvas {
-    max-width: 100%;
-    max-height: 320px;
-    display: block;
-    margin: 0 auto;
+    max-width: 100%; max-height: 340px; display: block; margin: 0 auto;
   }
 
-  /* STEP 3 */
   #step3 { text-align: center; }
 
-  .grande-check {
-    font-size: 3.5rem;
-    margin-bottom: 8px;
-  }
-
-  /* FOOTER */
   .footer {
-    text-align: center;
-    font-size: 0.8rem;
-    color: #aaa;
-    margin-top: 20px;
-    padding-bottom: 20px;
+    text-align: center; font-size: 0.8rem; color: #aaa;
+    margin-top: 20px; padding-bottom: 20px;
   }
 </style>
 </head>
 <body>
 
 <h1>📸 Logo sulla Foto</h1>
-<p class="sottotitolo">Metti il tuo logo su ogni foto in 3 passi</p>
+<p class="sottotitolo">Metti logo e testo su ogni foto</p>
 
-<!-- STEP 1: LOGO -->
+<!-- ═══ STEP 1 — LOGO ═══ -->
 <div class="step" id="step1">
   <div class="step-header">
     <div class="step-numero">1</div>
@@ -278,33 +228,29 @@
     </div>
   </div>
 
-  <button class="btn btn-arancio" id="btnCaricaLogo" onclick="document.getElementById('inputLogo').click()" style="margin-top:10px">
+  <button class="btn btn-arancio" id="btnCaricaLogo"
+    onclick="document.getElementById('inputLogo').click()" style="margin-top:10px">
     🖼️ Carica il Logo
   </button>
   <input type="file" id="inputLogo" accept="image/*">
 
-  <button class="btn btn-piccolo" id="btnCambia" style="display:none" onclick="document.getElementById('inputLogo').click()">
-    Cambia logo
-  </button>
-
-  <!-- Opzioni -->
   <div class="opzioni" id="opzioni">
     <label>📍 Posizione del logo</label>
     <div class="radio-group" id="posizioneGroup">
-      <div class="radio-btn" data-val="bottom-right" onclick="selezionaPosizione(this)">Basso destra</div>
-      <div class="radio-btn selezionato" data-val="bottom-left" onclick="selezionaPosizione(this)">Basso sinistra</div>
-      <div class="radio-btn" data-val="top-right" onclick="selezionaPosizione(this)">Alto destra</div>
-      <div class="radio-btn" data-val="top-left" onclick="selezionaPosizione(this)">Alto sinistra</div>
+      <div class="radio-btn" data-val="top-left"     onclick="selezionaPosLogo(this)">↖ Alto sinistra</div>
+      <div class="radio-btn" data-val="top-right"    onclick="selezionaPosLogo(this)">↗ Alto destra</div>
+      <div class="radio-btn selezionato" data-val="bottom-left"  onclick="selezionaPosLogo(this)">↙ Basso sinistra</div>
+      <div class="radio-btn" data-val="bottom-right" onclick="selezionaPosLogo(this)">↘ Basso destra</div>
     </div>
 
-    <label>📏 Dimensione del logo</label>
+    <label>📏 Dimensione</label>
     <div class="slider-row">
       <span>🔍</span>
       <input type="range" id="sliderDim" min="5" max="40" value="18" oninput="aggiornaSlider()">
       <span class="slider-val" id="valDim">18%</span>
     </div>
 
-    <label style="margin-top:10px">👻 Trasparenza</label>
+    <label>👻 Trasparenza</label>
     <div class="slider-row">
       <span>◻️</span>
       <input type="range" id="sliderAlpha" min="20" max="100" value="85" oninput="aggiornaSlider()">
@@ -313,10 +259,73 @@
   </div>
 </div>
 
-<!-- STEP 2: FOTO -->
-<div class="step disabilitato" id="step2">
+<!-- ═══ STEP 2 — TESTO ═══ -->
+<div class="step" id="step-testo">
   <div class="step-header">
     <div class="step-numero">2</div>
+    <div class="step-titolo">Testo sulla foto</div>
+  </div>
+  <p class="step-desc">Aggiungi un testo alla foto (facoltativo).<br>Lascia vuoto se non lo vuoi.</p>
+
+  <textarea class="testo-input" id="inputTesto" rows="2"
+    placeholder="Es: Bagno Capri • Tel. 0586 123456"
+    oninput="aggiornaTesto()"></textarea>
+
+  <label class="sezione-testo" style="display:block; font-size:.92rem; font-weight:800; color:#444; margin-top:14px; margin-bottom:6px">
+    📍 Posizione del testo
+  </label>
+  <div class="pos-grid" id="posTestoGrid">
+    <div class="pos-cella" data-val="top-left"      onclick="selezionaPosTesto(this)">↖ Alto<br>sin.</div>
+    <div class="pos-cella" data-val="top-center"    onclick="selezionaPosTesto(this)">⬆ Alto<br>centro</div>
+    <div class="pos-cella" data-val="top-right"     onclick="selezionaPosTesto(this)">↗ Alto<br>des.</div>
+    <div class="pos-cella" data-val="middle-left"   onclick="selezionaPosTesto(this)">◀ Centro<br>sin.</div>
+    <div class="pos-cella selezionato" data-val="center" onclick="selezionaPosTesto(this)">⊙ Centro</div>
+    <div class="pos-cella" data-val="middle-right"  onclick="selezionaPosTesto(this)">▶ Centro<br>des.</div>
+    <div class="pos-cella" data-val="bottom-left"   onclick="selezionaPosTesto(this)">↙ Basso<br>sin.</div>
+    <div class="pos-cella" data-val="bottom-center" onclick="selezionaPosTesto(this)">⬇ Basso<br>centro</div>
+    <div class="pos-cella" data-val="bottom-right"  onclick="selezionaPosTesto(this)">↘ Basso<br>des.</div>
+  </div>
+
+  <label style="display:block; font-size:.92rem; font-weight:800; color:#444; margin-top:14px; margin-bottom:6px">
+    🔤 Dimensione testo
+  </label>
+  <div class="slider-row">
+    <span style="font-size:.85rem">A</span>
+    <input type="range" class="viola" id="sliderTestoDim" min="8" max="90" value="28" oninput="aggiornaTesto()">
+    <span class="slider-val viola" id="valTestoDim">28</span>
+  </div>
+
+  <label style="display:block; font-size:.92rem; font-weight:800; color:#444; margin-top:14px; margin-bottom:8px">
+    🎨 Colore del testo
+  </label>
+  <div class="colori-group" id="coloriGroup">
+    <div class="colore-btn selezionato" data-col="#ffffff" onclick="selezionaColore(this)"
+      style="background:#fff; box-shadow:0 0 0 1px #ccc" title="Bianco">☐</div>
+    <div class="colore-btn" data-col="#000000" onclick="selezionaColore(this)"
+      style="background:#000" title="Nero"></div>
+    <div class="colore-btn" data-col="#ffdd00" onclick="selezionaColore(this)"
+      style="background:#ffdd00" title="Giallo"></div>
+    <div class="colore-btn" data-col="#ff3333" onclick="selezionaColore(this)"
+      style="background:#ff3333" title="Rosso"></div>
+    <div class="colore-btn" data-col="#1a56a0" onclick="selezionaColore(this)"
+      style="background:#1a56a0" title="Blu"></div>
+    <div class="colore-btn" data-col="#1a8c4e" onclick="selezionaColore(this)"
+      style="background:#1a8c4e" title="Verde"></div>
+  </div>
+
+  <div class="toggle-row" onclick="toggleSfondo()">
+    <div>
+      <div class="toggle-label">🌫️ Ombra dietro al testo</div>
+      <div class="toggle-sub">Aiuta a leggere il testo sulle foto chiare</div>
+    </div>
+    <div class="toggle-switch on" id="toggleSfondo"></div>
+  </div>
+</div>
+
+<!-- ═══ STEP 3 — FOTO ═══ -->
+<div class="step disabilitato" id="step2">
+  <div class="step-header">
+    <div class="step-numero">3</div>
     <div class="step-titolo">Scegli la foto</div>
   </div>
   <p class="step-desc">Scegli una foto dalla galleria del telefono.</p>
@@ -331,13 +340,13 @@
   </div>
 </div>
 
-<!-- STEP 3: SCARICA -->
+<!-- ═══ STEP 4 — SCARICA ═══ -->
 <div class="step disabilitato" id="step3">
   <div class="step-header">
-    <div class="step-numero">3</div>
+    <div class="step-numero">4</div>
     <div class="step-titolo">Scarica la foto</div>
   </div>
-  <p class="step-desc">La foto è pronta con il tuo logo!</p>
+  <p class="step-desc">La foto è pronta con logo e testo!</p>
 
   <button class="btn btn-verde" id="btnScarica" onclick="scaricaFoto()">
     💾 Scarica Foto
@@ -346,31 +355,52 @@
 
 <p class="footer">Le foto restano sul tuo telefono, niente viene inviato su internet.</p>
 
-<!-- CANVAS FINALE (nascosto) -->
 <canvas id="canvasFinale" style="display:none"></canvas>
 
 <script>
+  // ── STATO ─────────────────────────────────────
   let logoDataUrl = null;
   let fotoDataUrl = null;
-  let posizione = 'bottom-left';
-  let fotoOriginale = null; // Image object
+  let posLogo     = 'bottom-left';
+  let posTesto    = 'center';
+  let coloreTesto = '#ffffff';
+  let sfondoTesto = true;
 
-  // Carica logo salvato
-  window.onload = function() {
+  // ── INIT ──────────────────────────────────────
+  window.onload = function () {
+    // Logo salvato
     const saved = localStorage.getItem('logo_utente');
-    if (saved) {
-      logoDataUrl = saved;
-      mostraLogoPreview(saved);
-      abilitaStep2();
-    }
+    if (saved) { logoDataUrl = saved; mostraLogoPreview(saved); abilitaStep2(); }
+
+    // Impostazioni salvate
+    posLogo     = localStorage.getItem('posLogo')  || 'bottom-left';
+    posTesto    = localStorage.getItem('posTesto') || 'center';
+    coloreTesto = localStorage.getItem('colTesto') || '#ffffff';
+    sfondoTesto = localStorage.getItem('sfondo')  !== 'false';
+
+    const ts = localStorage.getItem('testoFoto');
+    if (ts) document.getElementById('inputTesto').value = ts;
+
+    // Slider salvati
+    const sd = localStorage.getItem('sliderDim');   if (sd) { document.getElementById('sliderDim').value   = sd; document.getElementById('valDim').textContent   = sd + '%'; }
+    const sa = localStorage.getItem('sliderAlpha'); if (sa) { document.getElementById('sliderAlpha').value = sa; document.getElementById('valAlpha').textContent = sa + '%'; }
+    const st = localStorage.getItem('sliderTesto'); if (st) { document.getElementById('sliderTestoDim').value = st; document.getElementById('valTestoDim').textContent = st; }
+
+    // Ripristina UI
+    document.querySelectorAll('#posizioneGroup .radio-btn').forEach(b =>
+      b.classList.toggle('selezionato', b.dataset.val === posLogo));
+    document.querySelectorAll('#posTestoGrid .pos-cella').forEach(b =>
+      b.classList.toggle('selezionato', b.dataset.val === posTesto));
+    document.querySelectorAll('#coloriGroup .colore-btn').forEach(b =>
+      b.classList.toggle('selezionato', b.dataset.col === coloreTesto));
+    document.getElementById('toggleSfondo').classList.toggle('on', sfondoTesto);
   };
 
-  // INPUT LOGO
-  document.getElementById('inputLogo').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
+  // ── LOGO ──────────────────────────────────────
+  document.getElementById('inputLogo').addEventListener('change', function (e) {
+    const file = e.target.files[0]; if (!file) return;
     const reader = new FileReader();
-    reader.onload = function(ev) {
+    reader.onload = ev => {
       logoDataUrl = ev.target.result;
       localStorage.setItem('logo_utente', logoDataUrl);
       mostraLogoPreview(logoDataUrl);
@@ -380,103 +410,130 @@
     reader.readAsDataURL(file);
   });
 
-  // INPUT FOTO
-  document.getElementById('inputFoto').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(ev) {
-      fotoDataUrl = ev.target.result;
-      disegnaAnteprima();
-    };
-    reader.readAsDataURL(file);
-  });
-
   function mostraLogoPreview(src) {
     document.getElementById('logoPreviewBox').style.display = 'flex';
     document.getElementById('logoPreviewImg').src = src;
     document.getElementById('btnCaricaLogo').textContent = '🔄 Sostituisci Logo';
-    document.getElementById('btnCambia').style.display = 'none';
     document.getElementById('opzioni').style.display = 'block';
     document.getElementById('desc1').innerHTML = 'Il logo è stato salvato!<br>Puoi cambiarlo quando vuoi.';
   }
 
-  function abilitaStep2() {
-    document.getElementById('step2').classList.remove('disabilitato');
-  }
+  // ── FOTO ──────────────────────────────────────
+  document.getElementById('inputFoto').addEventListener('change', function (e) {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => { fotoDataUrl = ev.target.result; disegnaAnteprima(); };
+    reader.readAsDataURL(file);
+  });
 
-  function abilitaStep3() {
-    document.getElementById('step3').classList.remove('disabilitato');
-  }
-
-  function selezionaPosizione(el) {
+  // ── HANDLERS ──────────────────────────────────
+  function selezionaPosLogo(el) {
     document.querySelectorAll('#posizioneGroup .radio-btn').forEach(b => b.classList.remove('selezionato'));
     el.classList.add('selezionato');
-    posizione = el.dataset.val;
+    posLogo = el.dataset.val;
+    localStorage.setItem('posLogo', posLogo);
+    if (fotoDataUrl) disegnaAnteprima();
+  }
+
+  function selezionaPosTesto(el) {
+    document.querySelectorAll('#posTestoGrid .pos-cella').forEach(b => b.classList.remove('selezionato'));
+    el.classList.add('selezionato');
+    posTesto = el.dataset.val;
+    localStorage.setItem('posTesto', posTesto);
+    if (fotoDataUrl) disegnaAnteprima();
+  }
+
+  function selezionaColore(el) {
+    document.querySelectorAll('#coloriGroup .colore-btn').forEach(b => b.classList.remove('selezionato'));
+    el.classList.add('selezionato');
+    coloreTesto = el.dataset.col;
+    localStorage.setItem('colTesto', coloreTesto);
+    if (fotoDataUrl) disegnaAnteprima();
+  }
+
+  function toggleSfondo() {
+    sfondoTesto = !sfondoTesto;
+    document.getElementById('toggleSfondo').classList.toggle('on', sfondoTesto);
+    localStorage.setItem('sfondo', sfondoTesto);
     if (fotoDataUrl) disegnaAnteprima();
   }
 
   function aggiornaSlider() {
-    document.getElementById('valDim').textContent = document.getElementById('sliderDim').value + '%';
-    document.getElementById('valAlpha').textContent = document.getElementById('sliderAlpha').value + '%';
+    const d = document.getElementById('sliderDim').value;
+    const a = document.getElementById('sliderAlpha').value;
+    document.getElementById('valDim').textContent   = d + '%';
+    document.getElementById('valAlpha').textContent = a + '%';
+    localStorage.setItem('sliderDim', d);
+    localStorage.setItem('sliderAlpha', a);
     if (fotoDataUrl) disegnaAnteprima();
   }
 
+  function aggiornaTesto() {
+    const t = document.getElementById('sliderTestoDim').value;
+    document.getElementById('valTestoDim').textContent = t;
+    localStorage.setItem('testoFoto', document.getElementById('inputTesto').value);
+    localStorage.setItem('sliderTesto', t);
+    if (fotoDataUrl) disegnaAnteprima();
+  }
+
+  function abilitaStep2() { document.getElementById('step2').classList.remove('disabilitato'); }
+  function abilitaStep3() { document.getElementById('step3').classList.remove('disabilitato'); }
+
+  // ── DISEGNO ───────────────────────────────────
   function disegnaAnteprima() {
     const foto = new Image();
-    foto.onload = function() {
-      fotoOriginale = foto;
-      const canvasA = document.getElementById('canvasAnteprima');
+    foto.onload = function () {
+      // Canvas finale (piena risoluzione)
       const canvasF = document.getElementById('canvasFinale');
-
-      // Dimensioni reali
-      canvasF.width = foto.width;
-      canvasF.height = foto.height;
+      canvasF.width = foto.width; canvasF.height = foto.height;
       const ctxF = canvasF.getContext('2d');
       ctxF.drawImage(foto, 0, 0);
 
+      // Anteprima ridotta
+      const canvasA = document.getElementById('canvasAnteprima');
+      const maxW = Math.min(window.innerWidth - 64, foto.width);
+      const scale = maxW / foto.width;
+      canvasA.width  = foto.width  * scale;
+      canvasA.height = foto.height * scale;
+      const ctxA = canvasA.getContext('2d');
+      ctxA.scale(scale, scale);
+      ctxA.drawImage(foto, 0, 0);
+
       if (logoDataUrl) {
         const logo = new Image();
-        logo.onload = function() {
+        logo.onload = function () {
           applicaLogo(ctxF, logo, foto.width, foto.height);
-
-          // Anteprima ridotta
-          const maxW = 360;
-          const scale = Math.min(maxW / foto.width, 1);
-          canvasA.width = foto.width * scale;
-          canvasA.height = foto.height * scale;
-          const ctxA = canvasA.getContext('2d');
-          ctxA.scale(scale, scale);
-          ctxA.drawImage(foto, 0, 0);
+          applicaTesto(ctxF, foto.width, foto.height);
           applicaLogo(ctxA, logo, foto.width, foto.height);
-
+          applicaTesto(ctxA, foto.width, foto.height);
           document.getElementById('anteprimaBox').style.display = 'block';
           abilitaStep3();
         };
         logo.src = logoDataUrl;
+      } else {
+        applicaTesto(ctxF, foto.width, foto.height);
+        applicaTesto(ctxA, foto.width, foto.height);
+        document.getElementById('anteprimaBox').style.display = 'block';
+        abilitaStep3();
       }
     };
     foto.src = fotoDataUrl;
   }
 
   function applicaLogo(ctx, logo, fw, fh) {
-    const dim = parseInt(document.getElementById('sliderDim').value) / 100;
-    const alpha = parseInt(document.getElementById('sliderAlpha').value) / 100;
-    const margine = fw * 0.04;
+    const dim    = parseInt(document.getElementById('sliderDim').value) / 100;
+    const alpha  = parseInt(document.getElementById('sliderAlpha').value) / 100;
+    const margine = fw * 0.035;
 
-    // Calcola dimensioni logo mantenendo proporzioni
-    const maxW = fw * dim;
-    const maxH = fh * dim;
-    const ratio = Math.min(maxW / logo.width, maxH / logo.height);
-    const lw = logo.width * ratio;
-    const lh = logo.height * ratio;
+    const ratio = Math.min((fw * dim) / logo.width, (fh * dim) / logo.height);
+    const lw = logo.width * ratio, lh = logo.height * ratio;
 
     let x, y;
-    switch (posizione) {
+    switch (posLogo) {
       case 'bottom-right': x = fw - lw - margine; y = fh - lh - margine; break;
       case 'bottom-left':  x = margine;            y = fh - lh - margine; break;
-      case 'top-right':    x = fw - lw - margine;  y = margine; break;
-      case 'top-left':     x = margine;             y = margine; break;
+      case 'top-right':    x = fw - lw - margine;  y = margine;           break;
+      case 'top-left':     x = margine;             y = margine;           break;
     }
 
     ctx.globalAlpha = alpha;
@@ -484,21 +541,99 @@
     ctx.globalAlpha = 1;
   }
 
-  function scaricaFoto() {
-    const canvas = document.getElementById('canvasFinale');
-    const link = document.createElement('a');
-    link.download = 'foto-con-logo.jpg';
-    link.href = canvas.toDataURL('image/jpeg', 0.95);
-    link.click();
+  function applicaTesto(ctx, fw, fh) {
+    const raw = document.getElementById('inputTesto').value.trim();
+    if (!raw) return;
 
-    // Feedback visivo
-    const btn = document.getElementById('btnScarica');
-    btn.textContent = '✅ Scaricata!';
-    btn.style.background = '#0a6638';
-    setTimeout(() => {
-      btn.textContent = '💾 Scarica Foto';
-      btn.style.background = '';
-    }, 2500);
+    // Font size scalato rispetto alla larghezza reale (base: 1080px)
+    const basePx   = parseInt(document.getElementById('sliderTestoDim').value);
+    const fontSize = Math.round(basePx * (fw / 1080));
+    const margine  = fw * 0.04;
+    const padding  = fontSize * 0.4;
+
+    ctx.save();
+    ctx.font = `bold ${fontSize}px Nunito, sans-serif`;
+    ctx.textBaseline = 'middle';
+
+    const righe        = raw.split('\n');
+    const altezzaRiga  = fontSize * 1.4;
+    const totAltezza   = righe.length * altezzaRiga;
+    const maxLarghezza = Math.max(...righe.map(r => ctx.measureText(r).width));
+
+    // Calcola textAlign e anchorX/Y
+    let anchorX, anchorY, align;
+    switch (posTesto) {
+      case 'top-left':      anchorX = margine;      anchorY = margine;                         align = 'left';   break;
+      case 'top-center':    anchorX = fw / 2;        anchorY = margine;                         align = 'center'; break;
+      case 'top-right':     anchorX = fw - margine;  anchorY = margine;                         align = 'right';  break;
+      case 'middle-left':   anchorX = margine;       anchorY = (fh - totAltezza) / 2;           align = 'left';   break;
+      case 'center':        anchorX = fw / 2;        anchorY = (fh - totAltezza) / 2;           align = 'center'; break;
+      case 'middle-right':  anchorX = fw - margine;  anchorY = (fh - totAltezza) / 2;           align = 'right';  break;
+      case 'bottom-left':   anchorX = margine;       anchorY = fh - totAltezza - margine;       align = 'left';   break;
+      case 'bottom-center': anchorX = fw / 2;        anchorY = fh - totAltezza - margine;       align = 'center'; break;
+      case 'bottom-right':  anchorX = fw - margine;  anchorY = fh - totAltezza - margine;       align = 'right';  break;
+    }
+    ctx.textAlign = align;
+
+    // Rettangolo sfondo
+    if (sfondoTesto) {
+      let bx;
+      if (align === 'left')   bx = anchorX - padding;
+      if (align === 'center') bx = anchorX - maxLarghezza / 2 - padding;
+      if (align === 'right')  bx = anchorX - maxLarghezza - padding;
+
+      const bw = maxLarghezza + padding * 2;
+      const bh = totAltezza   + padding;
+      const by = anchorY - padding * 0.5;
+      const r  = fontSize * 0.25;
+
+      ctx.globalAlpha = 0.52;
+      ctx.fillStyle = '#000';
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(bx, by, bw, bh, r);
+      else ctx.rect(bx, by, bw, bh);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+
+    // Scrivi testo riga per riga
+    ctx.fillStyle = coloreTesto;
+    righe.forEach((riga, i) => {
+      ctx.fillText(riga, anchorX, anchorY + i * altezzaRiga + altezzaRiga / 2);
+    });
+
+    ctx.restore();
+  }
+
+  // ── SCARICA ───────────────────────────────────
+  function scaricaFoto() {
+    // Ridisegna finale ad alta risoluzione
+    const fotoImg = new Image();
+    fotoImg.onload = function () {
+      const canvasF = document.getElementById('canvasFinale');
+      canvasF.width = fotoImg.width; canvasF.height = fotoImg.height;
+      const ctxF = canvasF.getContext('2d');
+      ctxF.drawImage(fotoImg, 0, 0);
+
+      const doScarica = () => {
+        applicaTesto(ctxF, fotoImg.width, fotoImg.height);
+        const link = document.createElement('a');
+        link.download = 'foto-con-logo.jpg';
+        link.href = canvasF.toDataURL('image/jpeg', 0.95);
+        link.click();
+        const btn = document.getElementById('btnScarica');
+        btn.textContent = '✅ Scaricata!';
+        btn.style.background = '#0a6638';
+        setTimeout(() => { btn.textContent = '💾 Scarica Foto'; btn.style.background = ''; }, 2500);
+      };
+
+      if (logoDataUrl) {
+        const logo = new Image();
+        logo.onload = () => { applicaLogo(ctxF, logo, fotoImg.width, fotoImg.height); doScarica(); };
+        logo.src = logoDataUrl;
+      } else { doScarica(); }
+    };
+    fotoImg.src = fotoDataUrl;
   }
 </script>
 </body>
